@@ -7,13 +7,15 @@ RSpec.describe 'As a merchant employee' do
                                   city: 'Denver',
                                   state: 'CO',
                                   zip: 80218)
+
     @employee = @merchant.users.create(name: 'Megan',
-                                              address: '123 Main St',
-                                              city: 'Denver',
-                                              state: 'CO',
-                                              zip: 80218,
-                                              email: 'megan@example.com',
-                                              password: 'securepassword')
+                                        address: '123 Main St',
+                                        city: 'Denver',
+                                        state: 'CO',
+                                        zip: 80218,
+                                        email: 'megan@example.com',
+                                        password: 'securepassword')
+
     @discount = Discount.create(percentage: 10,
                                      bulk: 15,
                                      merchant_id: @merchant.id)
