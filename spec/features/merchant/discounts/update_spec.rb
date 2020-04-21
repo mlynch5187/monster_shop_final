@@ -23,7 +23,7 @@ RSpec.describe 'When I visit the discount edit page' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@employee)
   end
 
-  it "I see a form that updated the discount percentage and bulk" do
+  it "I see a form that updates the discount percentage and bulk" do
 
     visit "/merchant/discounts/#{@discount.id}/edit"
 

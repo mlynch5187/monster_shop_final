@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'When I visit the discount show page' do
   before :each do
-    @merchant = Merchant.create!(name: 'Megans Marmalades',
+
+    @merchant = Merchant.create(name: 'Megans Marmalades',
                                   address: '123 Main St',
                                   city: 'Denver',
                                   state: 'CO',

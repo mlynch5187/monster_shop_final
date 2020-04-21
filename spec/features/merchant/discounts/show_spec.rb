@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'As a merchant employee' do
+RSpec.describe 'When I visit the discount show page' do
   before :each do
-    @merchant = Merchant.create!(name: 'Megans Marmalades',
+
+    @merchant = Merchant.create(name: 'Megans Marmalades',
                                   address: '123 Main St',
                                   city: 'Denver',
                                   state: 'CO',
@@ -22,18 +23,13 @@ RSpec.describe 'As a merchant employee' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@employee)
 
-    visit '/merchant/discounts'
+    visit "/merchant/discounts/#{@discount.id}"
   end
-
-describe 'When I am on the merchant discounts page'
 
   it "I see a link that takes me to that discounts show page and lists discount attributes" do
 
-    within "#discount-#{@discount.id}" do
-      click_link "10% discount if you buy at least 15 items"
-    end
-
-    expect(current_path).to eq("/merchant/discounts/#{@discount.id}")
     expect(page).to have_content("Discount Number: #{@discount.id}")
+    expect(page).to have_content("Percent Off: 10%")
+    expect(page).to have_content("Number of Items Required: 15")
   end
 end
