@@ -44,6 +44,14 @@ class Cart
     count_of(item_id) == Item.find(item_id).inventory
   end
 
+  def available_discounts(item_id)
+    Item.find(item_id).merchant.discounts
+  end
+
+  def discount?(item_id)
+    active_discount(item_id).present?
+  end
+
   def active_discount(item_id)
     discounts = available_discounts(item_id).select do |discount|
       count_of(item_id) >= discount.bulk
@@ -51,15 +59,5 @@ class Cart
     if !discounts.empty?
       discounts.max_by(&:percentage).percentage
     end
-  end
-
-  def discount?(item_id)
-    active_discount(item_id).present?
-  end
-
-  private
-
-  def available_discounts(item_id)
-    Item.find(item_id).merchant.discounts
   end
 end

@@ -12,17 +12,19 @@ class User::OrdersController < ApplicationController
   def create
     order = current_user.orders.new
     order.save
-      cart.items.each do |item|
-        # item.apply_discount
-        order.order_items.create({
-          item: item,
-          quantity: cart.count_of(item.id),
-          price: item.price
-          })
+    cart.items.each do |item|
+      order_item = order.order_items.create({
+        item: item,
+        quantity: cart.count_of(item.id),
+        price: item.price})
+        # require "pry"; binding.pry
+      if cart.discount?(item.id)
+        order_item.add_discount(cart.active_discount(item.id))
       end
-    session.delete(:cart)
-    flash[:notice] = "Order created successfully!"
-    redirect_to '/profile/orders'
+    end
+  session.delete(:cart)
+  flash[:notice] = "Order created successfully!"
+  redirect_to '/profile/orders'
   end
 
   def cancel
@@ -30,8 +32,4 @@ class User::OrdersController < ApplicationController
     order.cancel
     redirect_to "/profile/orders/#{order.id}"
   end
-
-  # def apply_discount(item)
-  #   require "pry"; binding.pry
-  # end
 end

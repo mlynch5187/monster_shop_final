@@ -16,6 +16,7 @@ class OrderItem < ApplicationRecord
   end
 
   def add_discount(discount)
+    # require "pry"; binding.pry
     discount_percentage = (discount / 100).to_f
     amount_to_discount = (price * discount_percentage).round(2)
     update(price: price - amount_to_discount)

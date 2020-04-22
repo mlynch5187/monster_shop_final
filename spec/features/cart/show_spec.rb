@@ -207,6 +207,8 @@ RSpec.describe 'Cart Show Page' do
 
      visit "/cart"
 
+     # save_and_open_page
+
      # expect(page).to have_content("$36.00")
    end
   end
