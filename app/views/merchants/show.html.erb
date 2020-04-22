@@ -1,7 +1,13 @@
 <h1><%= @merchant.name %></h1>
-
-<%= link_to 'Available Discounts', '/merchant/discounts' %><br/><br/>
-
+  <br/>
+<h4><%= 'Available Discounts' %></h4>
+<% @merchant.discounts.each do |discount| %>
+  <section id='discount-<%= discount.id %>'>
+  <p><%= link_to "#{discount.percentage}% discount if you buy at least #{discount.bulk} items", "/merchant/discounts/#{discount.id}" %><p/>
+  </section>
+<% end %>
+  <br/>
+  <br/>
 <section class='address'>
   <p><%= @merchant.address %></p>
   <p><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></p>

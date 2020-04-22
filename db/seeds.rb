@@ -13,3 +13,13 @@
 @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
 
 @discount = Discount.create(percentage: 20, bulk: 2, merchant_id: @megan.id)
+@discount_2 = Discount.create(percentage: 10, bulk: 3, merchant_id: @brian.id)
+
+@employee = @megan.users.create(name: 'Johnny',
+                                address: '2190 Grape Sreett',
+                                city: 'Denver',
+                                state: 'CO',
+                                zip: 80241,
+                                email: 'employee@example.com',
+                                password: 'securepassword',
+                                role: 1)
