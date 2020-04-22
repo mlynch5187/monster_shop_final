@@ -67,9 +67,7 @@ RSpec.describe 'Merchant Dashboard' do
 
       visit '/merchant'
 
-      save_and_open_page
-
-      expect(page).to have_content("Available Discounts")
+      expect(page).to have_link("Available Discounts")
     end
   end
 end
