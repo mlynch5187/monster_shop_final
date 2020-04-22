@@ -17,7 +17,7 @@ class Merchant::DiscountsController < Merchant::BaseController
   end
 
   def update
-    Discount.update(params[:discount_id], discount_params)
+    Discount.update(params[:id], discount_params)
     redirect_to "/merchant/discounts"
   end
 
