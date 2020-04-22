@@ -172,7 +172,7 @@ RSpec.describe 'Cart Show Page' do
 
     it "shows a discount if the minimum quantity of items has been added" do
 
-      @discount = Discount.create(percentage: 5,
+      discount = Discount.create(percentage: 5,
                                        bulk: 2,
                                        merchant_id: @megan.id)
 
@@ -188,5 +188,24 @@ RSpec.describe 'Cart Show Page' do
 
       expect(page).to have_content("A 5% discount has been added to Soldier")
     end
+
+    it "automatically applies discount to cart item if requirements met" do
+
+    discount = Discount.create(percentage: 10,
+                                     bulk: 2,
+                                     merchant_id: @megan.id)
+
+     visit item_path(@ogre)
+
+     click_button 'Add to Cart'
+
+     visit item_path(@ogre)
+
+     click_button 'Add to Cart'
+
+     visit "/cart"
+
+     # expect(page).to have_content("$36.00")
+   end
   end
 end

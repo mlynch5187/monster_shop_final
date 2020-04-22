@@ -13,6 +13,7 @@ class User::OrdersController < ApplicationController
     order = current_user.orders.new
     order.save
       cart.items.each do |item|
+        # item.apply_discount
         order.order_items.create({
           item: item,
           quantity: cart.count_of(item.id),
@@ -29,4 +30,8 @@ class User::OrdersController < ApplicationController
     order.cancel
     redirect_to "/profile/orders/#{order.id}"
   end
+
+  # def apply_discount(item)
+  #   require "pry"; binding.pry
+  # end
 end
