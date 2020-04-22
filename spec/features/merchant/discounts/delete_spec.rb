@@ -32,6 +32,8 @@ RSpec.describe 'When I visit the discount show page' do
 
     expect(current_path).to eq('/merchant/discounts')
 
-    expect(page).to_not have_content("#{@discount.id}")
+    save_and_open_page
+
+    expect(page).to_not have_content("15% discount if you buy at least 10 items")
   end
 end

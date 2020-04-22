@@ -67,7 +67,15 @@ RSpec.describe Cart do
       expect(@cart.count_of(@giant.id)).to eq(1)
     end
 
-    it '.active_discount' do
+    it '.available_discounts()' do
+      new_cart = Cart.new({
+        @giant.id.to_s => 7,
+        @ogre.id.to_s => 10
+        })
+      expect(new_cart.available_discounts(@ogre.id)).to eq([@discount])
+    end
+
+    it '.active_discount()' do
       new_cart = Cart.new({
         @giant.id.to_s => 7,
         @ogre.id.to_s => 10
@@ -75,7 +83,8 @@ RSpec.describe Cart do
       expect(new_cart.active_discount(@ogre.id)).to eq(10)
       expect(new_cart.active_discount(@giant.id)).to eq(nil)
     end
-    it '.discount?' do
+
+    it '.discount?()' do
       new_cart = Cart.new({
         @giant.id.to_s => 7,
         @ogre.id.to_s => 10

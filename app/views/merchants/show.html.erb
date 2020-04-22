@@ -1,5 +1,7 @@
 <h1><%= @merchant.name %></h1>
 
+<%= link_to 'Available Discounts', '/merchant/discounts' %><br/><br/>
+
 <section class='address'>
   <p><%= @merchant.address %></p>
   <p><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></p>
