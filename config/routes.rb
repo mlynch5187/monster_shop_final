@@ -12,7 +12,9 @@ get '/', to: 'welcome#index'
 
   resources :reviews, only: [:edit, :update, :destroy]
 
-  get '/cart', to: 'cart#show'
+  # get '/cart', to: 'cart#show'
+  resources :cart, only: [:show]
+
   post '/cart/:item_id', to: 'cart#add_item'
   delete '/cart', to: 'cart#empty'
   patch '/cart/:change/:item_id', to: 'cart#update_quantity'
@@ -21,10 +23,14 @@ get '/', to: 'welcome#index'
   get '/registration', to: 'users#new', as: :registration
   resources :users, only: [:create, :update]
   patch '/user/:id', to: 'users#update'
-  get '/profile', to: 'users#show'
-  get '/profile/edit', to: 'users#edit'
+
+  resources :profile, only: [:show, :edit]
+  # get '/profile', to: 'users#show'
+  # get '/profile/edit', to: 'users#edit'
   get '/profile/edit_password', to: 'users#edit_password'
-  post '/orders', to: 'user/orders#create'
+
+  resources :orders, only [:create]
+  # post '/orders', to: 'user/orders#create'
   get '/profile/orders', to: 'user/orders#index'
   get '/profile/orders/:id', to: 'user/orders#show'
   delete '/profile/orders/:id', to: 'user/orders#cancel'
@@ -39,8 +45,8 @@ get '/', to: 'welcome#index'
     resources :items, only: [:index, :new, :create, :edit, :update, :destroy]
     put '/items/:id/change_status', to: 'items#change_status'
     get '/orders/:id/fulfill/:order_item_id', to: 'orders#fulfill'
-    resources :discounts, only: [:index, :show, :new, :edit, :destroy]
-    post "/discounts/:id", to: "discounts#update"
+    resources :discounts, only: [:index, :show, :new, :edit, :destroy, :update]
+    # post "/discounts/:id", to: "discounts#update"
   end
 
   namespace :admin do
